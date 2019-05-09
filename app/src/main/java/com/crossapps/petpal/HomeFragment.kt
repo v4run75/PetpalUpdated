@@ -17,12 +17,5 @@ class HomeFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        text.setOnClickListener {
-//            Navigation.createNavigateOnClickListener(R.id.profileFragment, null)
-//        }
-
-        text.setOnClickListener { view1 ->
-            Navigation.findNavController(view1).navigate(R.id.profileFragment)
-        }
     }
 }

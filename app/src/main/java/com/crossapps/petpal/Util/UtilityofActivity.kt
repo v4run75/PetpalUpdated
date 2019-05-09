@@ -17,7 +17,9 @@ import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -319,5 +321,13 @@ class UtilityofActivity(activity: AppCompatActivity) {
         return Math.round(value * scale).toDouble() / scale
     }
 
+
+    fun configureToolbar(appCompatActivity: AppCompatActivity) {
+        val toolbar = appCompatActivity.findViewById<View>(R.id.toolbar) as Toolbar
+        appCompatActivity.setSupportActionBar(toolbar)
+        val actionbar = appCompatActivity.supportActionBar
+        actionbar!!.setDisplayShowHomeEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+    }
 
 }

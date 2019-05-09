@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:background="#00ffffff"
+                                    android:elevation="7dp"
+                                    card_view:cardCornerRadius="3dp">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.crossapps.petpal.Util.custom.TextViewPoppin
+                android:id="@+id/alert_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:text="Qr Code"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="22sp"/>
+        <View
+                android:id="@+id/separator"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/alert_title"
+                android:background="#e8e8e8"/>
+
+        <ImageView
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/separator"
+                android:layout_margin="30dp"
+                android:layout_gravity="center"
+                android:id="@+id/qrImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+        />
+
+
+        <LinearLayout
+                android:layout_below="@id/qrImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+            <com.crossapps.petpal.Util.custom.TextViewOpenSans
+                    android:id="@+id/save"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="10dp"
+                    android:clickable="true"
+                    android:text="Save to gallery"
+                    android:background="@drawable/home_button"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:focusable="true"/>
+
+            <com.crossapps.petpal.Util.custom.TextViewOpenSans
+                    android:id="@+id/close"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="10dp"
+                    android:clickable="true"
+                    android:text="Close"
+                    android:background="@drawable/negative_round_button"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:focusable="true"/>
+
+        </LinearLayout>
+
+        <!--
+                <com.crossapps.petpal.Util.custom.TextViewOpenSans
+                android:layout_below="@id/qrImage"
+                android:id="@+id/tapToSpeak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:padding="10dp"
+                android:clickable="true"
+                android:text="Save to gallery"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:focusable="true"/>-->
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

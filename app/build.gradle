@@ -10,7 +10,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.crossapps.petpal"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -44,5 +44,6 @@ dependencies {
     api 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.github.avito-tech:krop:0.43'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
 
 }

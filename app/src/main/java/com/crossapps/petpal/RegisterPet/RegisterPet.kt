@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Point
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -18,18 +19,25 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
+import android.view.Display
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.ImageView
+import androidmads.library.qrgenearator.QRGContents
+import androidmads.library.qrgenearator.QRGEncoder
+import androidmads.library.qrgenearator.QRGSaver
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.crossapps.petpal.R
 import com.crossapps.petpal.Util.UtilityofActivity
 import com.crossapps.petpal.Util.custom.TextViewOpenSans
+import com.google.zxing.WriterException
 import kotlinx.android.synthetic.main.content_register_pet.*
-import okhttp3.MediaType
-import okhttp3.RequestBody
+import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -52,6 +60,7 @@ class RegisterPet : AppCompatActivity() {
         menuInflater.inflate(R.menu.register_pet_menu, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.done -> {
@@ -128,8 +137,90 @@ class RegisterPet : AppCompatActivity() {
             }
         }
 
+
+        submit.setOnClickListener {
+            val jsonObject = JSONObject()
+            jsonObject.put("name", name.text.toString()).put("owner", owner.text.toString())
+                .put("contact", contact.text.toString()).put("address", address.text.toString())
+
+
+            generateQr(jsonObject.toString())
+
+        }
+
+
     }
 
+
+    private fun generateQr(jsonData: String) {
+        if (jsonData.isNotEmpty()) {
+            val manager = context!!.getSystemService(WINDOW_SERVICE) as WindowManager;
+            val display = manager.defaultDisplay
+            val point = Point()
+            display.getSize(point)
+            val width = point.x
+            val height = point.y
+            var smallerDimension = if (width < height) {
+                width
+            } else {
+                height
+            }
+            smallerDimension = smallerDimension * 3 / 4
+
+            val qrgEncoder = QRGEncoder(
+                jsonData, null,
+                QRGContents.Type.TEXT,
+                smallerDimension
+            )
+
+            try {
+                val bitmap = qrgEncoder.encodeAsBitmap();
+
+                val inflater = layoutInflater
+                val dialogView = inflater.inflate(R.layout.dialog_display_qr, null)
+                val dialogBuilder = android.support.v7.app.AlertDialog.Builder(context!!, R.style.PinDialog)
+                val alertDialog = dialogBuilder.setCancelable(false).setView(dialogView).create()
+                alertDialog.show()
+                alertDialog.setCanceledOnTouchOutside(true)
+                val qrImage = dialogView.findViewById<ImageView>(R.id.qrImage)
+
+                val save = dialogView.findViewById<TextViewOpenSans>(R.id.save)
+                val close = dialogView.findViewById<TextViewOpenSans>(R.id.close)
+
+                qrImage.setImageBitmap(bitmap);
+
+
+                save.setOnClickListener {
+                    saveQr(jsonData,bitmap)
+                }
+
+                close.setOnClickListener {
+                    alertDialog.dismiss()
+                }
+            } catch (e: WriterException) {
+                Log.v("QR", e.toString());
+            }
+        } else {
+            utilityofActivity!!.toast("Required");
+        }
+
+    }
+
+    private fun saveQr(jsonData: String, bitmap: Bitmap) {
+        val save: Boolean?
+        val result: String?
+        try {
+            save = QRGSaver.save("test", jsonData.trim(), bitmap, QRGContents.ImageType.IMAGE_JPEG);
+            result = if (save) {
+                "Image Saved"
+            } else {
+                "Image Not Saved"
+            }
+            utilityofActivity!!.toast(result)
+        } catch (e: Exception) {
+            e.printStackTrace();
+        }
+    }
 
     private fun dispatchTakePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
@@ -290,7 +381,6 @@ class RegisterPet : AppCompatActivity() {
         // Return the saved bitmap uri
         return file.absolutePath
     }
-
 
 
     override fun onSupportNavigateUp(): Boolean {
