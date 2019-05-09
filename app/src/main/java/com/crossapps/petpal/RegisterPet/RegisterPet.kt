@@ -2,6 +2,7 @@ package com.crossapps.petpal.RegisterPet
 
 import android.Manifest
 import android.app.Activity
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
@@ -33,6 +34,8 @@ import androidmads.library.qrgenearator.QRGSaver
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.crossapps.petpal.R
+import com.crossapps.petpal.RoomModel.Entities.PetsModel
+import com.crossapps.petpal.RoomModel.ViewModel.PetsViewModel
 import com.crossapps.petpal.Util.UtilityofActivity
 import com.crossapps.petpal.Util.custom.TextViewOpenSans
 import com.google.zxing.WriterException
@@ -54,7 +57,7 @@ class RegisterPet : AppCompatActivity() {
     val REQUEST_TAKE_PHOTO = 7
     val REQUEST_PICK_PHOTO = 8
     var croppedImageFile: File? = null
-
+    var viewModel: PetsViewModel? = null
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.register_pet_menu, menu)
@@ -138,12 +141,16 @@ class RegisterPet : AppCompatActivity() {
         }
 
 
+        viewModel = ViewModelProviders.of(this).get(PetsViewModel::class.java)
+
+
         submit.setOnClickListener {
             val jsonObject = JSONObject()
             jsonObject.put("name", name.text.toString()).put("owner", owner.text.toString())
                 .put("contact", contact.text.toString()).put("address", address.text.toString())
+                .put("image","https://images.dog.ceo/breeds/shiba/shiba-12.jpg")
 
-
+            val id=viewModel!!.addItem(PetsModel(name.text.toString(),owner.text.toString(),contact.text.toString(),address.text.toString(),"https://images.dog.ceo/breeds/shiba/shiba-12.jpg"))
             generateQr(jsonObject.toString())
 
         }

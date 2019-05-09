@@ -11,19 +11,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.crossapps.petpal.GlideApp;
 import com.crossapps.petpal.R;
+import com.crossapps.petpal.RoomModel.Entities.PetsModel;
 import com.crossapps.petpal.Server.Response.PetResponseData;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class PetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private ArrayList<PetResponseData> modelFeedArrayList = new ArrayList<>();
+    private List<PetsModel> modelFeedArrayList;
 
 
-    public PetAdapter(Context context, ArrayList<PetResponseData> modelFeedArrayList) {
+    public PetAdapter(Context context, List<PetsModel> modelFeedArrayList) {
 
         this.context = context;
         this.modelFeedArrayList = modelFeedArrayList;
@@ -49,7 +50,7 @@ public class PetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
-        final PetResponseData data = modelFeedArrayList.get(i);
+        final PetsModel data = modelFeedArrayList.get(i);
         CategoryHolder holder = (CategoryHolder) viewHolder;
 
 //        GlideApp.with(context).load(data.getImage()).transition(DrawableTransitionOptions.withCrossFade()).into(holder.cover);
@@ -76,6 +77,10 @@ public class PetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     }
 
+    public void addItems(List<PetsModel> borrowModelList) {
+        this.modelFeedArrayList = borrowModelList;
+        notifyDataSetChanged();
+    }
 
     @Override
     public long getItemId(int position) {
