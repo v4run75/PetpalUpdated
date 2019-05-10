@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/navItem"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:focusable="true"
+              android:clickable="true"
+              android:background="?android:attr/selectableItemBackground"
+              android:padding="15dp"
+              android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/icon"
+            android:layout_weight="0.1"
+            android:layout_width="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"/>
+
+    <com.crossapps.petpal.Util.custom.TextViewOpenSans
+            android:id="@+id/option"
+            android:layout_weight="0.9"
+            android:layout_width="0dp"
+            android:text="Login"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

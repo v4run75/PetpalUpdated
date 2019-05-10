@@ -1,8 +1,7 @@
-package com.crossapps.petpal.RegisterPet
+package com.crossapps.petpal.YourPets
 
 import android.Manifest
 import android.app.Activity
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
@@ -19,9 +18,11 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageView
@@ -31,12 +32,12 @@ import androidmads.library.qrgenearator.QRGSaver
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.crossapps.petpal.R
-import com.crossapps.petpal.RoomModel.Entities.PetsModel
 import com.crossapps.petpal.RoomModel.ViewModel.PetsViewModel
+import com.crossapps.petpal.Server.Response.PetResponseData
 import com.crossapps.petpal.Util.UtilityofActivity
 import com.crossapps.petpal.Util.custom.TextViewOpenSans
 import com.google.zxing.WriterException
-import kotlinx.android.synthetic.main.content_register_pet.*
+import kotlinx.android.synthetic.main.content_view_pet.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.json.JSONObject
 import java.io.File
@@ -46,7 +47,7 @@ import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RegisterPet : AppCompatActivity() {
+class ViewPet : AppCompatActivity() {
     var utilityofActivity: UtilityofActivity? = null
     var appCompatActivity: AppCompatActivity = this
     var context: Context? = null
@@ -56,6 +57,7 @@ class RegisterPet : AppCompatActivity() {
     val REQUEST_PICK_PHOTO = 8
     var croppedImageFile: File? = null
     var viewModel: PetsViewModel? = null
+    var petResponseData: PetResponseData? = null
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.register_pet_menu, menu)
@@ -84,7 +86,7 @@ class RegisterPet : AppCompatActivity() {
             window.statusBarColor = ContextCompat.getColor(this, R.color.hologrey)
         }
 
-        setContentView(R.layout.activity_register_pet)
+        setContentView(R.layout.activity_view_pet)
 
         context = this
 
@@ -95,7 +97,24 @@ class RegisterPet : AppCompatActivity() {
         utilityofActivity!!.configureToolbar(appCompatActivity)
 
 
-        subtitle.text = "Register Pet"
+
+        val bundle = intent.extras
+
+        if (bundle != null) {
+            petResponseData = bundle.getParcelable("pet")
+        }
+
+
+        subtitle.text = petResponseData!!.name
+
+
+        glide!!.load(petResponseData!!.image).into(profilePic)
+        name.text = petResponseData!!.name
+        owner.text = petResponseData!!.owner
+        contact.text = petResponseData!!.contact
+        address.text = petResponseData!!.address
+
+
 
         changeProfilePicture.setOnClickListener {
             if (((Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) && (ContextCompat.checkSelfPermission(
@@ -140,16 +159,14 @@ class RegisterPet : AppCompatActivity() {
         }
 
 
-        viewModel = ViewModelProviders.of(this).get(PetsViewModel::class.java)
 
 
         submit.setOnClickListener {
             val jsonObject = JSONObject()
             jsonObject.put("name", name.text.toString()).put("owner", owner.text.toString())
                 .put("contact", contact.text.toString()).put("address", address.text.toString())
-                .put("image","https://images.dog.ceo/breeds/shiba/shiba-12.jpg")
+                .put("image", "https://images.dog.ceo/breeds/shiba/shiba-12.jpg")
 
-            val id=viewModel!!.addItem(PetsModel(name.text.toString(),owner.text.toString(),contact.text.toString(),address.text.toString(),"https://images.dog.ceo/breeds/shiba/shiba-12.jpg"))
             generateQr(jsonObject.toString())
 
         }
@@ -197,7 +214,7 @@ class RegisterPet : AppCompatActivity() {
 
 
                 save.setOnClickListener {
-                    saveQr(jsonData,bitmap)
+                    saveQr(jsonData, bitmap)
                 }
 
                 close.setOnClickListener {
@@ -401,3 +418,4 @@ class RegisterPet : AppCompatActivity() {
         finish()
     }
 }
+

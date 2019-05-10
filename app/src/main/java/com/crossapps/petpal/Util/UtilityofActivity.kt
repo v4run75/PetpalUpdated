@@ -330,4 +330,12 @@ class UtilityofActivity(activity: AppCompatActivity) {
         actionbar.setDisplayHomeAsUpEnabled(true)
     }
 
+    fun configureDrawerToolbar(appCompatActivity: AppCompatActivity) {
+        val toolbar = appCompatActivity.findViewById<View>(R.id.toolbar) as Toolbar
+        appCompatActivity.setSupportActionBar(toolbar)
+        val actionbar = appCompatActivity.supportActionBar
+        actionbar!!.setHomeAsUpIndicator(R.drawable.ic_menu_black)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+    }
+
 }

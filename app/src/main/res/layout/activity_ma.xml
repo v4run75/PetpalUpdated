@@ -18,7 +18,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_register_pet"/>
+    <include layout="@layout/content_ma"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

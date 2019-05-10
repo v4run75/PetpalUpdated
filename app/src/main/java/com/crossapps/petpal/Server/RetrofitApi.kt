@@ -14,7 +14,7 @@ object RetrofitAPI {
 
     private var retrofit: Retrofit? = null
 
-    val Base_Url = "http://webpulse.co/pathprahari/web_apis/"
+    val Base_Url = "https://petpal-android.000webhostapp.com/index.php/"
 
 
     val client: Retrofit

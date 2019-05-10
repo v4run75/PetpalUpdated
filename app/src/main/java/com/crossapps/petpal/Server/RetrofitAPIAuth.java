@@ -19,7 +19,7 @@ public class RetrofitAPIAuth {
     private static Retrofit retrofit = null;
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-    private static String Base_Url = "http://webpulse.co/pathprahari/web_apis/";
+    private static String Base_Url = "https://petpal-android.000webhostapp.com/index.php/";
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
                     .baseUrl(Base_Url)

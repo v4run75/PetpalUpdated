@@ -13,7 +13,7 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".MainActivity"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize|stateHidden">
@@ -25,12 +25,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterPet.RegisterPet"
-                  android:theme="@style/AppTheme.NoActionBar"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity android:name=".Drag">
 
         </activity>
+        <activity android:name=".YourPets.ViewPet"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:name=".Random.Ma"/>
     </application>
 
 </manifest>

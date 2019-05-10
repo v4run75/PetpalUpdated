@@ -30,7 +30,7 @@ public class RetrofitApiAuthSingleTon {
 
             client = okHttpBuilder.build();
 
-            retrofit= new Retrofit.Builder().baseUrl("http://webpulse.co/pathprahari/web_apis/")
+            retrofit= new Retrofit.Builder().baseUrl("https://petpal-android.000webhostapp.com/index.php/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();

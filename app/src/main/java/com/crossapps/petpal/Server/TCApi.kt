@@ -13,8 +13,8 @@ interface TCApi {
 
 //  RetrofitApiAuthSingleTon.createService(WPApi::class.java,loginResponse!!.data.verifyToken)
 
-//  @POST("users/login")
-//  fun callLoginApi( @Body loginRequest : LoginRequest): Call<LoginResponse>
+  @POST("Pets/getPets")
+  fun callPetsApi(): Call<PetResponse>
 //  @POST("users/saveSocialUser")
 ////  fun callSaveSocialUser( @Body socialRequest : SaveSocialRequest): Call<UpdateSocialResponse>
 //  fun callSaveSocialUser( @Body socialRequest : SaveSocialRequest): Call<LoginResponse>
