@@ -4,19 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class UserPost implements Parcelable {
-    private String id;
+    private String userId;
     private String email;
-    private String first_name;
-    private String last_name;
-    private String profile_picture;
+    private String name;
+    private String profilePicture;
 
 
-    protected UserPost(Parcel in) {
-        id = in.readString();
+    private UserPost(Parcel in) {
+        userId = in.readString();
         email = in.readString();
-        first_name = in.readString();
-        last_name = in.readString();
-        profile_picture = in.readString();
+        name = in.readString();
+        profilePicture = in.readString();
     }
 
     public static final Creator<UserPost> CREATOR = new Creator<UserPost>() {
@@ -35,20 +33,16 @@ public class UserPost implements Parcelable {
         return email;
     }
 
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getName() {
+        return name;
     }
 
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public String getProfile_picture() {
-        return profile_picture;
+    public String getProfilePicture() {
+        return profilePicture;
     }
 
     @Override
@@ -58,11 +52,10 @@ public class UserPost implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
+        dest.writeString(userId);
         dest.writeString(email);
-        dest.writeString(first_name);
-        dest.writeString(last_name);
-        dest.writeString(profile_picture);
+        dest.writeString(name);
+        dest.writeString(profilePicture);
     }
 }
 //"user": {

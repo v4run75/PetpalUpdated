@@ -3,16 +3,11 @@ package com.crossapps.petpal.Login
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.text.TextUtils
-import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import com.google.gson.Gson
 import com.crossapps.petpal.MainActivity
 import com.crossapps.petpal.R
 import com.crossapps.petpal.Register.Register
@@ -20,17 +15,17 @@ import com.crossapps.petpal.Server.Request.LoginRequest
 import com.crossapps.petpal.Server.Response.LoginResponse
 import com.crossapps.petpal.Server.TCApi
 import com.crossapps.petpal.Util.*
+import com.google.gson.Gson
 import com.webpulse.trafficcontrol.Server.RetrofitAPI
 import kotlinx.android.synthetic.main.activity_email_login.*
-import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class Login : AppCompatActivity() {
 
-    var appCompatActivity:AppCompatActivity?=this
-    var utilityofActivity:UtilityofActivity?=null
+    var appCompatActivity: AppCompatActivity? = this
+    var utilityofActivity: UtilityofActivity? = null
     var helper: Helper? = null
     var flag = true
     var loginResponse: LoginResponse? = null
@@ -62,7 +57,6 @@ class Login : AppCompatActivity() {
         register.setOnClickListener {
             startActivity(Intent(appCompatActivity, Register::class.java))
         }
-
 
 
     }
@@ -103,11 +97,12 @@ class Login : AppCompatActivity() {
 
 
 //                        if (loginResponse!!.data.isVerified == "1") {
-                            PrefernceFile.getInstance(context!!).setString(Constant.isLogin, "true")
-                            PrefernceFile.getInstance(context!!).setString(Constant.PREF_KEY_USER_DATA, (Gson().toJson(loginResponse!!.data)))
-                            val intent = Intent(this@Login, MainActivity::class.java)
-                            startActivity(intent)
-                            finishAffinity()
+                        PrefernceFile.getInstance(context!!).setString(Constant.isLogin, "true")
+                        PrefernceFile.getInstance(context!!)
+                            .setString(Constant.PREF_KEY_USER_DATA, (Gson().toJson(loginResponse!!.data)))
+                        val intent = Intent(this@Login, MainActivity::class.java)
+                        startActivity(intent)
+                        finishAffinity()
 //                        } else {
 //                            val bundle = Bundle()
 //                            bundle.putString("userId", loginResponse!!.data.userId)
@@ -126,14 +121,12 @@ class Login : AppCompatActivity() {
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 call.cancel()
-                Logger.e("Error",t.localizedMessage)
+                Logger.e("Error", t.localizedMessage)
                 utilityofActivity!!.dismissProgressDialog()
                 utilityofActivity!!.toast("Failed, Please Check Your Internet Connection")
             }
         })
     }
-
-
 
 
 }

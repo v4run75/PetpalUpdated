@@ -23,23 +23,43 @@ import java.util.ArrayList;
 //    "profile_picture":"null"
 //},
 //    "medias": [
-//    {
-//        "link": "http://webpulse.co/pathprahari/uploaded_files/user_post/MP4_20190316_102831_406465368354707724v5nh.mp4",
-//        "type": "video"
-//    }
+    /*{
+        "link": "http://webpulse.co/pathprahari/uploaded_files/user_post/MP4_20190316_102831_406465368354707724v5nh.mp4",
+        "type": "video"
+    }*/
 //    ]
 //},
 
+/*
+
+{"message":"Login Success",
+        "data":
+        {"postId":"1"
+        ,"userId":"8",
+        "description":"Corgi 4 months old",
+        "created":"2019-05-13",
+        "medias":"{\"link\":\"https:\/\/images.dog.ceo\/breeds\/corgi-cardigan\/n02113186_11559.jpg\"," +
+        "\"type\":\"image\"}"
+        ,"user":
+        {"userId":"8",
+        "email":"varun.webpulse@gmail.com",
+        "name":"Varun",
+        "profilePicture":""}},
+        "success":true}
+*/
+
 public class PostResponseData implements Parcelable {
-    private String id;
+    private String postId;
+    private String userId;
     private String description;
     private String created;
     private UserPost user;
     private ArrayList<Media> medias;
 
 
-    protected PostResponseData(Parcel in) {
-        id = in.readString();
+    private PostResponseData(Parcel in) {
+        postId = in.readString();
+        userId = in.readString();
         description = in.readString();
         created = in.readString();
         user = in.readParcelable(UserPost.class.getClassLoader());
@@ -58,9 +78,12 @@ public class PostResponseData implements Parcelable {
         }
     };
 
+    public String getUserId() {
+        return userId;
+    }
 
-    public String getId() {
-        return id;
+    public String getPostId() {
+        return postId;
     }
 
     public ArrayList<Media> getMedias() {
@@ -87,7 +110,8 @@ public class PostResponseData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
+        dest.writeString(postId);
+        dest.writeString(userId);
         dest.writeString(description);
         dest.writeString(created);
         dest.writeParcelable(user, flags);

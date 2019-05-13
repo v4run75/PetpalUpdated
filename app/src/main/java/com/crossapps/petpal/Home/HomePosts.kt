@@ -97,9 +97,8 @@ class HomePosts : Fragment() {
         utilityofActivity?.showProgressDialog()
 
 //        val postRequest = GetPostRequest(loginResponse!!.userId, "HomePosts", pageNoLocal.toString())
-        val postRequest = GetPostRequest("1", "HomePosts", pageNoLocal.toString())
 
-        val call = tcApi?.callPostsApi(postRequest)
+        val call = tcApi?.callPostsApi()
 
 
         call?.enqueue(object : Callback<PostResponse> {

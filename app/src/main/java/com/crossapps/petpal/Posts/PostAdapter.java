@@ -132,7 +132,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         LoginResponseData loginResponse = new Gson().fromJson(PrefernceFile.Companion.getInstance(context).getString(Constant.INSTANCE.getPREF_KEY_USER_DATA()), LoginResponseData.class);
 
 
-        if (posts.getUser().getId().equals(loginResponse.getUserId())) {
+        if (posts.getUser().getUserId().equals(loginResponse.getUserId())) {
             holder.menu.setVisibility(View.VISIBLE);
         } else {
             holder.menu.setVisibility(View.GONE);
@@ -152,7 +152,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        deletePost(context, posts.getId(), holder);
+                        deletePost(context, posts.getPostId(), holder);
 
                     }
                 });
@@ -183,12 +183,12 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
 
-        if (posts.getUser().getProfile_picture() != null) {
-            glide.load(posts.getUser().getProfile_picture()).into(holder.imgView_proPic);
+        if (posts.getUser().getProfilePicture() != null) {
+            glide.load(posts.getUser().getProfilePicture()).into(holder.imgView_proPic);
         } else
             glide.load(R.drawable.ic_done).into(holder.imgView_proPic);
 
-        holder.tv_name.setText(posts.getUser().getFirst_name());
+        holder.tv_name.setText(posts.getUser().getName());
         holder.tv_time.setText(getTimeElapsed(posts.getCreated()));
 
         if (!posts.getDescription().isEmpty()) {
@@ -202,7 +202,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         holder.recyclerView.setHasFixedSize(false);
 //        holder.recyclerView.setAdapter(new MediaAdapter(context, posts.getMedias(), activity,posts.getUser().getFirst_name()+posts.getDescription().substring(0,5)));
-        holder.recyclerView.setAdapter(new MediaAdapter(context, posts.getMedias(), activity, posts.getUser().getFirst_name()));
+        holder.recyclerView.setAdapter(new MediaAdapter(context, posts.getMedias(), activity, posts.getUser().getName()));
 
         final SnapHelper snapHelper = new PagerSnapHelper();
         if (holder.recyclerView.getOnFlingListener() == null)
@@ -232,108 +232,61 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         final UtilityofActivity utilityofActivity = new UtilityofActivity(activity);
 
-        holder.share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-
-
-                try {
-                    SecretKey secretkey = generateKey();
-                    postid = encryptMsg(posts.getId(), secretkey);
-                    userid = encryptMsg(posts.getUser().getId(), secretkey);
-
-                    Logger.d("Decrypt: ", decryptMsg(postid, secret));
-                    Logger.d("Decrypt: ", decryptMsg(userid, secret));
-
-                    Logger.d("Secret Key: ", secretkey.toString());
-
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                } catch (NoSuchPaddingException e) {
-                    e.printStackTrace();
-                } catch (InvalidKeyException e) {
-                    e.printStackTrace();
-                } catch (InvalidParameterSpecException e) {
-                    e.printStackTrace();
-                } catch (IllegalBlockSizeException e) {
-                    e.printStackTrace();
-                } catch (BadPaddingException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (InvalidKeySpecException e) {
-                    e.printStackTrace();
-                } catch (InvalidAlgorithmParameterException e) {
-                    e.printStackTrace();
-                }
-
-                String link = "http://www.pathprahari.co/post?postid=" + new String(postid) + "?userid=" + new String(userid);
-
-
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("text/plain");
-                i.putExtra(Intent.EXTRA_TEXT, link);
-                context.startActivity(Intent.createChooser(i, "Share Post"));
-
-
-            }
-        });
+//        holder.share.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(final View v) {
+//
+//
+//                try {
+//                    SecretKey secretkey = generateKey();
+//                    postid = encryptMsg(posts.getPostId(), secretkey);
+//                    userid = encryptMsg(posts.getUser().getUserId(), secretkey);
+//
+//                    Logger.d("Decrypt: ", decryptMsg(postid, secret));
+//                    Logger.d("Decrypt: ", decryptMsg(userid, secret));
+//
+//                    Logger.d("Secret Key: ", secretkey.toString());
+//
+//                } catch (NoSuchAlgorithmException e) {
+//                    e.printStackTrace();
+//                } catch (NoSuchPaddingException e) {
+//                    e.printStackTrace();
+//                } catch (InvalidKeyException e) {
+//                    e.printStackTrace();
+//                } catch (InvalidParameterSpecException e) {
+//                    e.printStackTrace();
+//                } catch (IllegalBlockSizeException e) {
+//                    e.printStackTrace();
+//                } catch (BadPaddingException e) {
+//                    e.printStackTrace();
+//                } catch (UnsupportedEncodingException e) {
+//                    e.printStackTrace();
+//                } catch (InvalidKeySpecException e) {
+//                    e.printStackTrace();
+//                } catch (InvalidAlgorithmParameterException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                String link = "http://www.pathprahari.co/post?postid=" + new String(postid) + "?userid=" + new String(userid);
+//
+//
+//                Intent i = new Intent(Intent.ACTION_SEND);
+//                i.setType("text/plain");
+//                i.putExtra(Intent.EXTRA_TEXT, link);
+//                context.startActivity(Intent.createChooser(i, "Share Post"));
+//
+//
+//            }
+//        });
 
 
     }
 
 
-    private static SecretKeySpec secret;
-
-    public static SecretKey generateKey()
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
-        return secret = new SecretKeySpec("1234567890132341".getBytes(), "AES");
-    }
-
-    public static byte[] encryptMsg(String message, SecretKey secret)
-            throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidParameterSpecException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
-        /* Encrypt the message. */
-        Cipher cipher = null;
-        cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE, secret);
-        return cipher.doFinal(message.getBytes("UTF-8"));
-    }
-
-    public static String decryptMsg(byte[] cipherText, SecretKey secret)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidParameterSpecException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException {
-        /* Decrypt the message, given derived encContentValues and initialization vector. */
-        Cipher cipher = null;
-        cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(Cipher.DECRYPT_MODE, secret);
-        return new String(cipher.doFinal(cipherText), "UTF-8");
-    }
-
-//
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    private void startMyOwnForeground() {
-//        String NOTIFICATION_CHANNEL_ID = "example.permanence";
-//        String channelName = "Background Service";
-//        NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_DEFAULT);
-//        chan.setLightColor(Color.BLUE);
-//        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-//
-//        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-//        manager.createNotificationChannel(chan);
-//
-//        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID);
-//        Notification notification = notificationBuilder.setOngoing(true)
-//                .setContentTitle("App is running in background")
-//                .setSmallIcon(R.drawable.ic_launcher_foreground)
-//                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-//                .build();
-//
-//        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-//        notificationManager.notify(2,notification);
-//        manager.notify(2, notification);
-//    }
 
 
-    public static String getTimeElapsed(String date) {
+    @NotNull
+    private static String getTimeElapsed(String date) {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //            format.setTimeZone(TimeZone.getTimeZone("GMT+05:30"));
@@ -378,9 +331,9 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextViewOpenSans tv_time, tv_likes, tv_comments, tv_status;
+        TextViewOpenSans tv_time, tv_status;
         ImageView imgView_proPic, menu;
-        RelativeLayout share;
+//        RelativeLayout share;
         RecyclerView recyclerView;
         TextView mDotsLayout;
         TextViewPoppin tv_name;
@@ -389,9 +342,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public MyViewHolder(View itemView) {
             super(itemView);
 
-
             imgView_proPic = itemView.findViewById(R.id.profilePic);
-
             tv_name = itemView.findViewById(R.id.name);
             menu = itemView.findViewById(R.id.menu);
             tv_time = itemView.findViewById(R.id.postTime);

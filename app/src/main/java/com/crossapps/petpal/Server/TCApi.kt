@@ -12,10 +12,10 @@ import retrofit2.http.*
 interface TCApi {
 
     //  RetrofitApiAuthSingleTon.createService(WPApi::class.java,loginResponse!!.data.verifyToken)
-    @POST("users/login")
+    @POST("User/getUser")
     fun callLoginApi(@Body loginRequest: LoginRequest): Call<LoginResponse>
 
-    @POST("users/register")
+    @POST("User/addUser")
     fun callRegisterApi( @Body loginRequest : RegisterRequest): Call<RegisterResponse>
 
     @POST("Pets/getPets")
@@ -24,8 +24,8 @@ interface TCApi {
     @POST("post/deletePost")
     fun callDeletePost(@Body deletePostRequest: DeletePostRequest): Call<DefaultResponse>
 
-    @POST("post/getPostDetail")
-    fun callPostsApi(@Body getPostRequest: GetPostRequest): Call<PostResponse>
+    @POST("User/getPosts")
+    fun callPostsApi(): Call<PostResponse>
 
     @Multipart
     @POST("post/addPost")

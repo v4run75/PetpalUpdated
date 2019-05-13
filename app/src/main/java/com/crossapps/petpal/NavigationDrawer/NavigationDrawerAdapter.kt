@@ -1,7 +1,9 @@
 package com.crossapps.petpal.NavigationDrawer
 
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.DrawerLayout
@@ -11,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import com.crossapps.petpal.Login.Login
 import com.crossapps.petpal.R
 import com.crossapps.petpal.Util.Constant
 import com.crossapps.petpal.Util.PrefernceFile
@@ -42,9 +45,9 @@ class NavigationDrawerAdapter(
         holder.icon.setImageDrawable(ContextCompat.getDrawable(context, item.drawable))
         holder.option.text = item.optionName
 
-//
-//        holder.navItem.setOnClickListener {
-//            when (item.id) {
+
+        holder.navItem.setOnClickListener {
+            when (item.id) {
 //                1 -> {
 //                    drawerLayout.closeDrawers()
 //                    if (PrefernceFile.getInstance(context).getString(Constant.isLogin) == "true") {
@@ -95,31 +98,31 @@ class NavigationDrawerAdapter(
 //                    drawerLayout.closeDrawers()
 //                    context.startActivity(Intent(context, AboutUs::class.java))
 //                }
-//                8 -> {
-//                    PrefernceFile.getInstance(context).setString(Constant.isLogin, "false")
-//                    context.startActivity(Intent(context, MainActivity::class.java))
-//                    (context as Activity).finishAffinity()
-//                }
-//                else -> {
-//                }
-//            }
-//        }
+                8 -> {
+                    PrefernceFile.getInstance(context).setString(Constant.isLogin, "false")
+                    context.startActivity(Intent(context, Login::class.java))
+                    (context as Activity).finishAffinity()
+                }
+                else -> {
+                }
+            }
+        }
 
 
         if (PrefernceFile.getInstance(context).getString(Constant.isLogin) != "true") {
 
             when (item.id) {
-                1 -> {
-                    holder.navItem.visibility = View.VISIBLE
-                }
-                2 -> {
-                    holder.option.setTextColor(ContextCompat.getColor(context, R.color.hologrey))
-                    holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.hologrey))
-                }
-                3 -> {
-                    holder.option.setTextColor(ContextCompat.getColor(context, R.color.hologrey))
-                    holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.hologrey))
-                }
+//                1 -> {
+//                    holder.navItem.visibility = View.VISIBLE
+//                }
+//                2 -> {
+//                    holder.option.setTextColor(ContextCompat.getColor(context, R.color.hologrey))
+//                    holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.hologrey))
+//                }
+//                3 -> {
+//                    holder.option.setTextColor(ContextCompat.getColor(context, R.color.hologrey))
+//                    holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.hologrey))
+//                }
                 8 -> {
                     holder.navItem.visibility = View.GONE
                 }
@@ -128,10 +131,10 @@ class NavigationDrawerAdapter(
             }
         } else {
             when (item.id) {
-                1 -> {
-                    holder.navItem.visibility = View.VISIBLE
-                    holder.option.text = "My Profile"
-                }
+//                1 -> {
+//                    holder.navItem.visibility = View.VISIBLE
+//                    holder.option.text = "My Profile"
+//                }
                 8 -> {
                     holder.navItem.visibility = View.VISIBLE
                 }

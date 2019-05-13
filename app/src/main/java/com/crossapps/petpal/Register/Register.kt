@@ -13,10 +13,7 @@ import com.crossapps.petpal.R
 import com.crossapps.petpal.Server.Request.RegisterRequest
 import com.crossapps.petpal.Server.Response.RegisterResponse
 import com.crossapps.petpal.Server.TCApi
-import com.crossapps.petpal.Util.Constant
-import com.crossapps.petpal.Util.Helper
-import com.crossapps.petpal.Util.PrefernceFile
-import com.crossapps.petpal.Util.UtilityofActivity
+import com.crossapps.petpal.Util.*
 import com.google.gson.Gson
 import com.webpulse.trafficcontrol.Server.RetrofitAPI
 import kotlinx.android.synthetic.main.activity_email_login.editTextEmail
@@ -147,6 +144,7 @@ class Register : AppCompatActivity() {
 
             override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                 call.cancel()
+                Logger.e("Error: ",t.localizedMessage)
                 utilityofActivity!!.dismissProgressDialog()
                 utilityofActivity!!.toast("Failed, Please Check Your Internet Connection")
             }

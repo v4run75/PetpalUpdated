@@ -59,7 +59,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public int getItemViewType(int position) {
         switch (modelFeedArrayList.get(position).getType()) {
-            case "img":
+            case "image":
                 return 101;
             case "video":
                 return 102;
@@ -96,7 +96,7 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
         switch (modelFeed.getType()) {
-            case "img": {
+            case "image": {
                 final MyImageViewHolder holder = ((MyImageViewHolder) viewHolder);
 
 
