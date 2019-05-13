@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:weightSum="9"
+              android:background="@color/white">
+    <LinearLayout
+            android:layout_weight="2"
+            android:id="@+id/welcome"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:orientation="vertical">
+        <com.crossapps.petpal.Util.custom.TextViewPoppin
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register an Email"
+                android:textStyle="bold"
+                android:textSize="25sp"/>
+
+        <com.crossapps.petpal.Util.custom.TextViewOpenSans
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Connect an email to your account so that you can experience the personalized app across all your devices."
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="13sp"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+            android:layout_weight="5"
+            android:id="@+id/email_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+        <EditText
+                android:layout_margin="10dp"
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@drawable/border_black"
+                android:hint="Name"/>
+        <EditText
+                android:layout_margin="10dp"
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@drawable/border_black"
+                android:hint="Email"/>
+
+        <EditText
+                android:layout_margin="10dp"
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@drawable/border_black"
+                android:hint="Password"
+                android:inputType="textPassword"/>
+
+        <EditText
+                android:layout_margin="10dp"
+                android:id="@+id/mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@drawable/border_black"
+                android:hint="Mobile No"
+                android:inputType="number"/>
+        <!--<EditText-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:id="@+id/city"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="15dp"-->
+                <!--android:background="@drawable/border_black"-->
+                <!--android:hint="City"-->
+                <!--android:inputType="text"/>-->
+
+        <!--<AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"-->
+                              <!--android:layout_margin="10dp"-->
+                              <!--android:id="@+id/city"-->
+                              <!--android:layout_width="match_parent"-->
+                              <!--android:layout_height="wrap_content"-->
+                              <!--android:padding="15dp"-->
+                              <!--android:background="@drawable/border_black"-->
+                              <!--android:hint="City"-->
+                              <!--android:inputType="text"/>-->
+        <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:background="@drawable/border_black"-->
+        <!--&gt;-->
+            <!--<fragment android:id="@+id/autocomplete_fragment"-->
+                      <!--android:layout_width="match_parent"-->
+                      <!--android:layout_height="wrap_content"-->
+                      <!--android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"-->
+            <!--/>-->
+        <!--</LinearLayout>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_weight="2"
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="0dp">
+        <Button
+                android:id="@+id/register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/home_button"
+                android:padding="10dp"
+                android:text="Register"
+                android:textColor="#ffffff"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="5dp"
+                android:textSize="15sp"
+                android:drawableStart="@drawable/ic_mail" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

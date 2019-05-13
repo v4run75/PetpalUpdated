@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/white">
+
+    <RelativeLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp">
+
+        <com.crossapps.petpal.Util.RoundedImageView
+                android:id="@+id/profilePic"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/back" />
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/profilePic"
+                android:orientation="vertical">
+
+            <com.crossapps.petpal.Util.custom.TextViewPoppin
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Karun Shrestha"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+            <!--<TextView-->
+                    <!--android:id="@+id/name"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:fontFamily="sans-serif-medium"-->
+                    <!--android:text="Karun Shrestha"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="17sp" />-->
+
+            <com.crossapps.petpal.Util.custom.TextViewOpenSans
+                    android:id="@+id/postTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="11 hrs"
+                    android:textColor="@color/hologrey"
+                    android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <ImageView
+                android:visibility="gone"
+                android:padding="10dp"
+                android:id="@+id/menu"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_menu"
+                android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+
+
+    <FrameLayout
+            android:id="@+id/mediaFrame"
+            android:layout_below="@+id/status"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/mediaContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        <com.crossapps.petpal.Util.custom.TextViewOpenSans
+                android:id="@+id/image_count"
+                android:gravity="center"
+                android:text="1/5"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@drawable/black_container"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:alpha="0.6"
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="15dp"
+                android:layout_height="wrap_content"/>
+    </FrameLayout>
+
+
+    <!--<TextView-->
+            <!--android:id="@+id/image_count"-->
+            <!--android:gravity="center"-->
+            <!--android:text="1/5"-->
+            <!--android:textSize="15sp"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_below="@+id/containerTwo"-->
+            <!--android:layout_width="match_parent"-->
+              <!--android:layout_height="wrap_content"/>-->
+    <!--<LinearLayout android:id="@+id/image_count"-->
+                  <!--android:layout_below="@+id/containerTwo"-->
+                  <!--android:layout_width="fill_parent"-->
+                  <!--android:layout_height="wrap_content"-->
+                  <!--android:orientation="horizontal"-->
+                  <!--android:gravity="center"-->
+                  <!--android:background="#00000000">-->
+    <!--</LinearLayout>-->
+
+    <com.crossapps.petpal.Util.custom.TextViewOpenSans
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/container"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="This is Status"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    <!--<ImageView-->
+            <!--android:id="@+id/imgView_line"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0.5dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="@color/lightGrey" />-->
+
+</RelativeLayout>

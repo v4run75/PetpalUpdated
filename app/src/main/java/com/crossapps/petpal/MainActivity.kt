@@ -13,6 +13,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import com.crossapps.petpal.CreatePost.CreatePost
+import com.crossapps.petpal.Home.HomePosts
 import com.crossapps.petpal.NavigationDrawer.DrawerItem
 import com.crossapps.petpal.NavigationDrawer.NavigationDrawerAdapter
 import com.crossapps.petpal.RegisterPet.RegisterPet
@@ -57,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
                 fab.show()
                 fab.setOnClickListener {
-                    val intent = Intent(this@MainActivity, RegisterPet::class.java)
+                    val intent = Intent(this@MainActivity, CreatePost::class.java)
 //                        startActivityForResult(intent, 2)
                     startActivity(intent)
 
@@ -66,11 +68,11 @@ class MainActivity : AppCompatActivity() {
 
                 val currentFragment = supportFragmentManager.findFragmentById(R.id.container)
 
-                if (currentFragment is HomeFragment) {
+                if (currentFragment is HomePosts) {
 
                 } else {
                     helper = Helper.instance
-                    helper?.moveFragment(HomeFragment(), null, R.id.container, appCompatActivity!!)
+                    helper?.moveFragment(HomePosts(), null, R.id.container, appCompatActivity!!)
                     return@OnNavigationItemSelectedListener true
                 }
             }
@@ -109,7 +111,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         helper = Helper.instance
-        helper?.moveFragment(HomeFragment(), null, R.id.container, appCompatActivity!!)
+        helper?.moveFragment(HomePosts(), null, R.id.container, appCompatActivity!!)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }

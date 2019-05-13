@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+    <com.crossapps.petpal.Util.custom.TextViewOpenSans
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:padding="15dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"/>
+    <LinearLayout
+            android:layout_below="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+
+        <com.crossapps.petpal.Util.custom.TextViewOpenSans android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Choose Category"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"/>
+        <Spinner
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/category"/>
+
+        <!--android:entries="@array/category"-->
+        <com.crossapps.petpal.Util.custom.TextViewOpenSans android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:text="Location"
+                  android:textSize="20sp"
+                  android:textColor="@color/colorPrimary"
+                  android:textStyle="bold"/>
+
+        <com.crossapps.petpal.Util.custom.TextViewOpenSans
+                android:background="@color/transparent"
+                android:id="@+id/address"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:text="Location"
+                android:textColor="@color/black"
+                  android:textSize="20sp"
+                  android:padding="15dp"/>
+
+        <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+        <RelativeLayout
+        android:id="@+id/positive"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/home_button">
+
+        <com.crossapps.petpal.Util.custom.TextViewOpenSans
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Submit"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+        android:layout_weight="1"
+        android:id="@+id/negative"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/negative_round_button">
+
+        <com.crossapps.petpal.Util.custom.TextViewOpenSans
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Dismiss"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+        </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

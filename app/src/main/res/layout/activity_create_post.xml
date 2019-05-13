@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+>
+
+    <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ToolbarColoredBackArrow"
+                app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+            <com.crossapps.petpal.Util.custom.TextViewPoppin
+                    android:gravity="start"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/Red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="Create Post"/>
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_create_post" />
+
+    <!-- Adding bottom sheet after main content -->
+    <include layout="@layout/bottom_sheet" />
+
+</android.support.design.widget.CoordinatorLayout>
+

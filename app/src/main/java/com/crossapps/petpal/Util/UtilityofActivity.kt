@@ -241,6 +241,41 @@ class UtilityofActivity(activity: AppCompatActivity) {
                 Toast.LENGTH_LONG).show()
 
     }
+    fun showUploadDialog() {
+        appCompatActivity.runOnUiThread(Runnable {
+            if (dialogs == null) {
+                dialogs = Dialog(appCompatActivity)
+                dialogs!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialogs!!.setCancelable(false)
+                dialogs!!.setContentView(R.layout.dialog_upload)
+            }
+
+            dialogs?.show()
+        })
+    }
+
+    fun updateProgressDialog(percentage:Int) {
+        try {
+            if (dialogs != null) {
+                if(percentage<100)
+                    dialogs?.findViewById<ProgressBar>(R.id.progress_bar)!!.progress =percentage
+                else
+                    dialogs?.dismiss()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+    fun dismissUploadDialog() {
+        try {
+            if (dialogs != null) {
+                dialogs?.dismiss()
+                dialogs = null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
     fun showProgressDialog() {
         appCompatActivity.runOnUiThread(Runnable {

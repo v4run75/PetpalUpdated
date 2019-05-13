@@ -8,13 +8,14 @@
 
     <application
             android:usesCleartextTraffic="true"
-            android:allowBackup="true"
+            android:allowBackup="false"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity"
+
+        <activity android:name=".SplashScreen.SplashScreen"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
@@ -24,16 +25,38 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity android:name=".RegisterPet.RegisterPet"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize|stateHidden"/>
-        <activity android:name=".Drag">
-
-        </activity>
+        <activity android:name=".Drag"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity android:name=".YourPets.ViewPet"
                   android:screenOrientation="portrait"
                   android:windowSoftInputMode="adjustResize|stateHidden"/>
-        <activity android:name=".Random.Ma"/>
+        <activity android:name=".Timeline.TimelineVideo"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:name=".Timeline.TimelineImage"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:name=".Preview.PreviewVideo"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:name=".CreatePost.CreatePost"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:name=".Login.Login"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:name=".Register.Register"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize|stateHidden"/>
+
     </application>
 
 </manifest>

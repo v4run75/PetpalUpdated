@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/bottom_sheet"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#fff"
+              android:orientation="vertical"
+              android:padding="10dp"
+              app:behavior_hideable="false"
+              app:behavior_peekHeight="56dp"
+              app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <!--android:background="#f9f9f9">-->
+        <ImageView
+                android:id="@+id/seperator"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+         />
+        <!--android:src="@drawable/ic_seperator"-->
+
+        <LinearLayout
+                android:id="@+id/menu"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <!--android:drawableStart="@drawable/ic_photo_camera"-->
+            <com.crossapps.petpal.Util.custom.TextViewOpenSans
+                    android:drawablePadding="10dp"
+                    android:id="@+id/takePhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Take Photo"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="start|center"
+                    android:layout_marginBottom="10dp"/>
+
+            <!--android:drawableStart="@drawable/ic_video_camera"-->
+            <com.crossapps.petpal.Util.custom.TextViewOpenSans
+                    android:drawablePadding="10dp"
+                    android:id="@+id/takeVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Take Video"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="start|center"
+                    android:layout_marginBottom="10dp"/>
+            <!--<TextView-->
+                    <!--android:drawableStart="@drawable/ic_gallery"-->
+                    <!--android:drawablePadding="10dp"-->
+                    <!--android:id="@+id/gallery"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Choose from gallery"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="15sp"-->
+                    <!--android:padding="5dp"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:gravity="start|center"-->
+                    <!--android:layout_marginBottom="10dp"/>-->
+
+            <!--android:drawableStart="@drawable/ic_gallery"-->
+            <com.crossapps.petpal.Util.custom.TextViewOpenSans
+                    android:drawablePadding="10dp"
+                    android:id="@+id/galleryImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Choose images from gallery"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="start|center"
+                    android:layout_marginBottom="10dp"/>
+
+            <!--android:drawableStart="@drawable/ic_choose_video"-->
+            <com.crossapps.petpal.Util.custom.TextViewOpenSans
+                    android:drawablePadding="10dp"
+                    android:id="@+id/galleryVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Choose videos from gallery"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="start|center"
+                    android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+<LinearLayout
+        android:visibility="gone"
+        android:id="@+id/collpased_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <!--android:drawableEnd="@drawable/ic_add_black"-->
+    <com.crossapps.petpal.Util.custom.TextViewOpenSans
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to Your Post"
+            android:textSize="20sp"
+            android:padding="10dp"
+    />
+</LinearLayout>
+    </LinearLayout>
+</LinearLayout>

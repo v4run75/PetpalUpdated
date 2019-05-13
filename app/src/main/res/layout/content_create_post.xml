@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_create_post">
+    <RelativeLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp">
+
+        <!--<ImageView-->
+                <!--android:id="@+id/profilePic"-->
+                <!--android:layout_width="45dp"-->
+                <!--android:layout_height="45dp"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:scaleType="fitCenter"-->
+                <!--android:src="@drawable/ic_petition" />-->
+
+        <com.crossapps.petpal.Util.RoundedImageView
+                android:id="@+id/profilePic"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"/>
+
+        <!--android:src="@drawable/ic_user"-->
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/profilePic"
+                android:orientation="horizontal">
+
+            <com.crossapps.petpal.Util.custom.TextViewPoppin
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="User Name"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+
+        </LinearLayout>
+
+        <com.crossapps.petpal.Util.custom.TextViewOpenSans
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end|center_vertical"
+                android:id="@+id/next"
+                android:text="Next"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_width="45dp"
+                android:layout_height="45dp" />
+        <!--<ImageView-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_gravity="end|center_vertical"-->
+                <!--android:id="@+id/location"-->
+                <!--android:src="@drawable/ic_location"-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp" />-->
+
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+            android:visibility="gone"
+            android:layout_below="@+id/container"
+            android:id="@+id/thumbnails"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scrollbars="horizontal"
+    />
+
+    <FrameLayout
+            android:layout_below="@+id/thumbnails" android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+        <com.crossapps.petpal.Util.custom.EditTextOpenSans
+                android:gravity="start"
+                android:id="@+id/comment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="25sp"
+                android:padding="20dp"
+                android:hint="What's your experience today?"
+
+        />
+
+
+    </FrameLayout>
+
+
+</RelativeLayout>
