@@ -16,7 +16,7 @@ interface TCApi {
     fun callLoginApi(@Body loginRequest: LoginRequest): Call<LoginResponse>
 
     @POST("User/addUser")
-    fun callRegisterApi( @Body loginRequest : RegisterRequest): Call<RegisterResponse>
+    fun callRegisterApi(@Body loginRequest: RegisterRequest): Call<RegisterResponse>
 
     @POST("Pets/getPets")
     fun callPetsApi(): Call<PetResponse>
@@ -30,9 +30,10 @@ interface TCApi {
     @Multipart
     @POST("post/addPost")
     fun uploadMultipleFilesDynamic(
-        @Part("userId") user_id: RequestBody, @Part("description") description: RequestBody, @Part(
-            "category"
-        ) category: RequestBody, @Part("location") location: RequestBody, @PartMap post_medias: Map<String, @JvmSuppressWildcards RequestBody>
+        @Part("userId") user_id: RequestBody,
+        @Part("description") description: RequestBody,
+        @PartMap post_medias: Map<String,
+        @JvmSuppressWildcards RequestBody>
     ): Call<ResponseBody>
 
 //  @Multipart

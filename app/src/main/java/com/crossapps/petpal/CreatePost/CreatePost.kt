@@ -480,7 +480,7 @@ class CreatePost : AppCompatActivity() {
         utilityofActivity?.showProgressDialog()
 
         val tcApi = RetrofitApiAuthSingleTon.createService(TCApi::class.java, "token")
-        val call = tcApi?.uploadMultipleFilesDynamic(user_id, description, category, location, list)
+        val call = tcApi?.uploadMultipleFilesDynamic(user_id, description, list)
 
 
         call?.enqueue(object : Callback<ResponseBody> {

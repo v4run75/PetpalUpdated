@@ -35,18 +35,18 @@ class SplashScreen : AppCompatActivity() {
         handler = Handler()
         handler!!.postDelayed({
 
-            if(PrefernceFile.getInstance(mContext!!).getString(Constant.isLogin).equals("true"))
-            {
+//            if(PrefernceFile.getInstance(mContext!!).getString(Constant.isLogin).equals("true"))
+//            {
                 val intent = Intent(this@SplashScreen, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            }
-            else{
+//            }
+        /*    else{
 
                 val intent = Intent(this@SplashScreen, Login::class.java)
                 startActivity(intent)
                 finish()
-            }
+            }*/
 
         }, 1000)
     }
